@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Solar System Travel</title>
+  <style>
+    html {
+      scroll-behavior: smooth; /* Enable smooth scroll */
+    }
+    body {
+      background: #000011;
+      color: #aad8ff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    .planet-section {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      scroll-snap-align: start;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #ffcc00;
+      text-shadow: 0 0 10px #ffcc00;
+    }
+    p {
+      max-width: 600px;
+      font-size: 1.3rem;
+      color: #ddf3ff;
+      text-shadow: 0 0 5px #336699;
+    }
+    .planet-img {
+      width: 200px;
+      height: 200px;
+      margin: 20px 0;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #66ccff;
+      transition: transform 0.5s ease;
+    }
+    .planet-img:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 40px #aaddff;
+    }
+    #nav {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 1000;
+      background: rgba(0,0,0,0.7);
+      padding: 10px 15px;
+      border-radius: 10px;
+      user-select: none;
+    }
+    #nav button {
+      background: #222;
+      border: none;
+      color: #aad8ff;
+      padding: 10px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
+    }
+    #nav button:hover {
+      background: #44aaff;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="nav">
+    <button data-target="mercury">Mercury</button>
+    <button data-target="venus">Venus</button>
+    <button data-target="earth">Earth</button>
+    <button data-target="mars">Mars</button>
+    <button data-target="jupiter">Jupiter</button>
+    <button data-target="saturn">Saturn</button>
+    <button data-target="uranus">Uranus</button>
+    <button data-target="neptune">Neptune</button>
+  </div>
+
+  <section id="mercury" class="planet-section" style="background: #3b3b3b;">
+    <h1>Mercury</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Mercury_in_true_color.jpg" alt="Mercury" class="planet-img" />
+    <p>Mercury is the closest planet to the Sun and the smallest planet in our Solar System.</p>
+  </section>
+
+  <section id="venus" class="planet-section" style="background: #b8860b;">
+    <h1>Venus</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Venus-real_color.jpg" alt="Venus" class="planet-img" />
+    <p>Venus has a thick toxic atmosphere and is the hottest planet in the Solar System.</p>
+  </section>
+
+  <section id="earth" class="planet-section" style="background: #2050ff;">
+    <h1>Earth</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" alt="Earth" class="planet-img" />
+    <p>Earth is our home, the only planet known to support life.</p>
+  </section>
+
+  <section id="mars" class="planet-section" style="background: #aa4433;">
+    <h1>Mars</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" alt="Mars" class="planet-img" />
+    <p>Mars is known as the Red Planet and has the tallest volcano in the Solar System.</p>
+  </section>
+
+  <section id="jupiter" class="planet-section" style="background: #d4af37;">
+    <h1>Jupiter</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" alt="Jupiter" class="planet-img" />
+    <p>Jupiter is the largest planet and famous for its giant red spot storm.</p>
+  </section>
+
+  <section id="saturn" class="planet-section" style="background: #deb887;">
+    <h1>Saturn</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_during_Equinox.jpg" alt="Saturn" class="planet-img" />
+    <p>Saturn is known for its stunning rings made of ice and rock particles.</p>
+  </section>
+
+  <section id="uranus" class="planet-section" style="background: #70dbdb;">
+    <h1>Uranus</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Uranus2.jpg" alt="Uranus" class="planet-img" />
+    <p>Uranus rotates on its side and has a faint ring system.</p>
+  </section>
+
+  <section id="neptune" class="planet-section" style="background: #000080;">
+    <h1>Neptune</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Neptune_Full.jpg" alt="Neptune" class="planet-img" />
+    <p>Neptune is the farthest known planet in our Solar System and has the fastest winds.</p>
+  </section>
+
+  <script>
+    // Smooth scroll to planet sections when nav buttons clicked
+    document.querySelectorAll('#nav button').forEach(button => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-target');
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

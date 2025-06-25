@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Budget Simulator - Many Items</title>
+  <style>
+    body {
+      background: #111;
+      color: #0f0;
+      font-family: monospace, monospace;
+      padding: 20px;
+      text-align: center;
+    }
+    #items-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+      gap: 15px;
+      max-height: 600px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #0f0;
+      border-radius: 8px;
+      background: #222;
+    }
+    .item-btn {
+      position: relative;
+      cursor: pointer;
+      padding: 10px 10px 10px 50px;
+      font-size: 1rem;
+      color: #0f0;
+      background: #222;
+      border: 2px solid #0f0;
+      border-radius: 6px;
+      text-align: left;
+      transition: background 0.3s ease;
+    }
+    .item-btn:hover {
+      background: #0f0;
+      color: #111;
+    }
+    .item-btn img {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+    }
+    #balance {
+      font-size: 2rem;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Budget Simulator</h1>
+  <p>Spend your $100,000 budget!</p>
+  <div id="items-container"></div>
+  <div id="balance">Remaining: $100,000</div>
+
+  <script>
+    const budget = 100000;
+    let balance = budget;
+
+    const spendingItems = [];
+
+    // Generate 100 sample items with placeholder image and random costs
+    for(let i = 1; i <= 100; i++) {
+      spendingItems.push({
+        name: `Item #${i}`,
+        cost: Math.floor(Math.random() * 2000) + 100,  // cost between 100 and 2100
+        img: "https://img.icons8.com/ios-filled/50/00ff00/shopping-cart.png" // sample icon
+      });
+    }
+
+    const container = document.getElementById('items-container');
+    const balanceEl = document.getElementById('balance');
+
+    function spend(amount) {
+      if(amount > balance) {
+        alert("Not enough budget!");
+        return;
+      }
+      balance -= amount;
+      balanceEl.textContent = `Remaining: $${balance.toLocaleString()}`;
+    }
+
+    // Create buttons dynamically
+    spendingItems.forEach(item => {
+      const btn = document.createElement('button');
+      btn.classList.add('item-btn');
+      btn.innerHTML = `<img src="${item.img}" alt="${item.name}" /> ${item.name} ($${item.cost.toLocaleString()})`;
+      btn.onclick = () => spend(item.cost);
+      container.appendChild(btn);
+    });
+  </script>
+</body>
+</html>

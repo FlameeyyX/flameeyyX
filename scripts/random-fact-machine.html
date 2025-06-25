@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Random Fact Machine</title>
+  <style>
+    body {
+      background: #111;
+      color: #00f;
+      font-family: monospace, monospace;
+      text-align: center;
+      padding: 50px;
+    }
+    button {
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      background: #222;
+      color: #00f;
+      border: 2px solid #00f;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #00f;
+      color: #111;
+    }
+    #fact {
+      font-size: 1.5rem;
+      margin-top: 20px;
+      min-height: 3em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Random Fact Machine</h1>
+  <p>Click the button to get a random fact!</p>
+  <button id="factBtn">Get Fact</button>
+  <div id="fact">Loading facts, please wait...</div>
+
+  <script>
+    let facts = [];
+
+    fetch('../assets/facts_2000.json')
+      .then(response => response.json())
+      .then(data => {
+        facts = data;
+        document.getElementById('fact').textContent = "Click the button to get a random fact!";
+      })
+      .catch(() => {
+        document.getElementById('fact').textContent = "Failed to load facts.";
+      });
+
+    document.getElementById('factBtn').addEventListener('click', () => {
+      if (facts.length === 0) {
+        document.getElementById('fact').textContent = "Loading facts, please wait...";
+        return;
+      }
+      const fact = facts[Math.floor(Math.random() * facts.length)];
+      document.getElementById('fact').textContent = fact;
+    });
+  </script>
+</body>
+</html>
